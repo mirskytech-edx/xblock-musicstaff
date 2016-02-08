@@ -77,17 +77,18 @@ C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
         return {"tune": self.tune}
 
 
-    example_in_24_time = """X:1
-T:Simple Scale
-M:C
-L:1/4
-K:C
-C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
-
-
     @staticmethod
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
+        
+        example_in_24_time = """X:1
+    T:Simple Scale
+    M:C
+    L:1/4
+    K:C
+    C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""        
+        
+               
         return [
             ("MirskytechXBlock",
              """<xmirskytech question="Write a scale of eigth notes."/>
