@@ -23,7 +23,7 @@ def package_data(pkg, roots):
 setup(
     name='xmirskytech-xblock',
     version='0.1',
-    description='xmirskytech XBlock',   # TODO: write a better description.
+    description='xblock which allows users to compose music',
     packages=[
         'xmirskytech',
     ],

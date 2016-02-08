@@ -2,31 +2,25 @@
     <div class="pure-g">
         <div class="pure-u-1-1">
             <h1>Compose a Tune</h1>
-            <p>Use <strong>abc</strong>  music notation to compose your own song!</p>
+            <p>Using <a class="tutorial" href="http://abcnotation.com/examples" target="_blank">abc</a> notation, please complete the following.</p>
         </div>
     </div>
     <div class="pure-g">
         <div class="pure-u-1-2">
-            <textarea name="abc" id="abc" cols="80" rows="15">{scope.tune}</textarea>
+            <textarea name="abc-editor" id="abc-editor" cols="80" rows="15">{self.tune}</textarea>
+            <p id="status"></p>
         </div>
         <div class="pure-u-1-2">
-        
+            <h2>abc music notation tutorial</h2>
         </div>
     </div>
     <div class="pure-g">
-        <div class="pure-u-1-2">
-            <div id="midi"></div>
-            <div id="warnings"></div>
-            <div id="music"></div>
+        <div class="pure-u-1-2">            
             <div id="paper0"></div>
-            <div id="paper1"></div>
-            <div id="paper2"></div>
-            <div id="paper3"></div>
         </div>
-        <div class="pure-u-1-2">
-        <button id="createmidi">create midi</button>
-        <div id="myoutput"></div>        
-        
+        <div class="pure-u-1-12">&nbsp;</div>
+        <div class="pure-u-5-12">
+            <div id="warnings"></div>
         </div>
     </div>
 </div>

@@ -1,9 +1,6 @@
 /* CSS for MirskytechXBlock */
 
-.xmirskytech_block .count {
+.xmirskytech_block a.tutorial {
     font-weight: bold;
 }
 
-.xmirskytech_block p {
-    cursor: pointer;
-}

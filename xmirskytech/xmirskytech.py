@@ -3,7 +3,7 @@
 import pkg_resources
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer
+from xblock.fields import Scope, String
 from xblock.fragment import Fragment
 
 
@@ -15,16 +15,25 @@ class MirskytechXBlock(XBlock):
     """
 
     # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
-    count = Integer(
-        default=10, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
-    )
+    # self.<fieldname>.    
     
-    otherstuff = Integer(
-        default=10, scope=Scope.user_state,
+    question = String(
+        default="",
+        scope=Scope.user_state,
+        help="The question to ask the user to complete."
+    )   
+    
+    
+    default_tune_scale = """X:1
+T:Simple Scale
+M:C
+L:1/4
+K:C
+C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
+    
+    
+    tune = String(
+        default=default_tune_scale, scope=Scope.user_state,
         help="A simple counter, to show something happening",    
     )
 
@@ -36,45 +45,58 @@ class MirskytechXBlock(XBlock):
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
-        The primary view of the MirskytechXBlock, shown to students
-        when viewing courses.
+        This renders the view for the XBlock. It poses a question and asks
+        the student to create a musical composition as an answer.
         """
+        
+        # base template
         html = self.resource_string("static/html/xmirskytech.html")
+        
         frag = Fragment(html.format(self=self))
+        
+        # stylesheets
         frag.add_css(self.resource_string("static/css/pure/pure-min.css"))
         frag.add_css(self.resource_string("static/css/xmirskytech.css"))
+        
+        # library dependencies
         frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_2.3-min.js"))
+        frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
+        
+        # javascript & initialization
         frag.add_javascript(self.resource_string("static/js/src/xmirskytech.js"))
         frag.initialize_js('MirskytechXBlock')
+        
         return frag
 
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
     @XBlock.json_handler
-    def increment_count(self, data, suffix=''):
+    def store_tune(self, data, suffix=''):
         """
-        An example handler, which increments the data.
+        Saves the answer of what the user is composing
         """
-        # Just to show data coming in...
-        assert data['hello'] == 'world'
+        self.tune = data['tune']
+        return {"tune": self.tune}
 
-        self.count += 1
-        return {"count": self.count}
 
-    # TO-DO: change this to create the scenarios you'd like to see in the
-    # workbench while developing your XBlock.
+    example_in_24_time = """X:1
+T:Simple Scale
+M:C
+L:1/4
+K:C
+C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
+
+
     @staticmethod
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
         return [
             ("MirskytechXBlock",
-             """<xmirskytech/>
+             """<xmirskytech question="Write a scale of eigth notes."/>
              """),
             ("Multiple MirskytechXBlock",
              """<vertical_demo>
-                <xmirskytech/>
-                <xmirskytech/>
-                <xmirskytech/>
+                <xmirskytech question="Compose the first four bars of Mozart's 5th Symphony."/>
+                <xmirskytech question="Create a riff which exemplifies jazz in the 1940s."/>
+                <xmirskytech question="Translate the given tune into 4/4 time" tune="%s"/>
                 </vertical_demo>
-             """),
+             """ % example_in_24_time),
         ]
