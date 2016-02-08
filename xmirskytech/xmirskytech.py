@@ -1,6 +1,7 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import pkg_resources
+import uuid
 
 from xblock.core import XBlock
 from xblock.fields import Scope, String
@@ -16,10 +17,12 @@ class MirskytechXBlock(XBlock):
 
     # Fields are defined on the class.  You can access them in your code as
     # self.<fieldname>.    
+    uid = None
+    
     
     question = String(
         default="",
-        scope=Scope.user_state,
+        scope=Scope.content,
         help="The question to ask the user to complete."
     )   
     
@@ -29,12 +32,17 @@ T:Simple Scale
 M:C
 L:1/4
 K:C
-C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
+|]"""
     
     
     tune = String(
         default=default_tune_scale, scope=Scope.user_state,
-        help="A simple counter, to show something happening",    
+        help="The answer for the user.",    
+    )
+    
+    start=String(
+        default="", scope=Scope.content,
+        help="A starting point for the user"
     )
 
     def resource_string(self, path):
@@ -48,6 +56,13 @@ C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
         This renders the view for the XBlock. It poses a question and asks
         the student to create a musical composition as an answer.
         """
+        
+        if not self.uid:
+            self.uid = self.scope_ids.usage_id.replace(".","-");
+            
+        if self.start and self.tune == self.default_tune_scale:
+            self.tune = self.start.replace("\\n","\n")
+        
         
         # base template
         html = self.resource_string("static/html/xmirskytech.html")
@@ -81,14 +96,8 @@ C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
         
-        example_in_24_time = """X:1
-    T:Simple Scale
-    M:C
-    L:1/4
-    K:C
-    C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""        
+        example_in_24_time = "X:1\\nT:Simple Scale\\nM:C\\nL:2/4\\nK:C\\nC,/2 D,2 E,/4 F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"
         
-               
         return [
             ("MirskytechXBlock",
              """<xmirskytech question="Write a scale of eigth notes."/>
@@ -97,7 +106,7 @@ C, D, E, F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"""
              """<vertical_demo>
                 <xmirskytech question="Compose the first four bars of Mozart's 5th Symphony."/>
                 <xmirskytech question="Create a riff which exemplifies jazz in the 1940s."/>
-                <xmirskytech question="Translate the given tune into 4/4 time" tune="%s"/>
+                <xmirskytech question="Translate the given tune into 4/4 time" start="%s"/>
                 </vertical_demo>
              """ % example_in_24_time),
         ]
