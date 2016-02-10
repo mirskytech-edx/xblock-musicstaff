@@ -2,6 +2,10 @@
 
 An XBlock that allows you to compose a song using the [ABC music notation][1].
 
+![alt text](https://github.com/mirskytech-edx/xblock-musicstaff/raw/master/MusicStaffXBlockScreen.png "Music Staff XBlock Screen")
+
+
+
 ## Usage
 
 use the `musicstaff` tag to instantiate a music staff xblock.
