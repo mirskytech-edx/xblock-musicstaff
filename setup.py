@@ -1,4 +1,4 @@
-"""Setup for xmirskytech XBlock."""
+"""Setup for music staff xblock."""
 
 import os
 from setuptools import setup
@@ -21,19 +21,19 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='xmirskytech-xblock',
+    name='musicstaff-xblock',
     version='0.1',
     description='xblock which allows users to compose music',
     packages=[
-        'xmirskytech',
+        'musicstaff',
     ],
     install_requires=[
         'XBlock',
     ],
     entry_points={
         'xblock.v1': [
-            'xmirskytech = xmirskytech:MirskytechXBlock',
+            'musicstaff = musicstaff:MusicStaffXBlock',
         ]
     },
-    package_data=package_data("xmirskytech", ["static", "public"]),
+    package_data=package_data("musicstaff", ["static", "public"]),
 )

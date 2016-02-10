@@ -8,7 +8,7 @@ from xblock.fields import Scope, String
 from xblock.fragment import Fragment
 
 
-class MirskytechXBlock(XBlock):
+class MusicStaffXBlock(XBlock):
     """
     An XBlock that allows you to compose a song using the ABC music notation.
     
@@ -65,21 +65,21 @@ K:C
         
         
         # base template
-        html = self.resource_string("static/html/xmirskytech.html")
+        html = self.resource_string("static/html/musicstaff.html")
         
         frag = Fragment(html.format(self=self))
         
         # stylesheets
         frag.add_css(self.resource_string("static/css/pure/pure-min.css"))
-        frag.add_css(self.resource_string("static/css/xmirskytech.css"))
+        frag.add_css(self.resource_string("static/css/musicstaff.css"))
         
         # library dependencies
         frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_2.3-min.js"))
         frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
         
         # javascript & initialization
-        frag.add_javascript(self.resource_string("static/js/src/xmirskytech.js"))
-        frag.initialize_js('MirskytechXBlock')
+        frag.add_javascript(self.resource_string("static/js/src/musicstaff.js"))
+        frag.initialize_js('MusicStaffXBlock')
         
         return frag
 
@@ -99,14 +99,14 @@ K:C
         example_in_24_time = "X:1\\nT:Simple Scale\\nM:C\\nL:2/4\\nK:C\\nC,/2 D,2 E,/4 F,|G, A, B, C|D E F G|A B c d|e f g a|b c' d' e'|f' g' a' b'|]"
         
         return [
-            ("MirskytechXBlock",
-             """<xmirskytech question="Write a scale of eigth notes."/>
+            ("MusicStaffXBlock",
+             """<musicstaff question="Write a scale of eigth notes."/>
              """),
-            ("Multiple MirskytechXBlock",
+            ("Multiple MusicStaffXBlock",
              """<vertical_demo>
-                <xmirskytech question="Compose the first four bars of Mozart's 5th Symphony."/>
-                <xmirskytech question="Create a riff which exemplifies jazz in the 1940s."/>
-                <xmirskytech question="Translate the given tune into 4/4 time" start="%s"/>
+                <musicstaff question="Compose the first four bars of Mozart's 5th Symphony."/>
+                <musicstaff question="Create a riff which exemplifies jazz in the 1940s."/>
+                <musicstaff question="Translate the given tune into 4/4 time" start="%s"/>
                 </vertical_demo>
              """ % example_in_24_time),
         ]

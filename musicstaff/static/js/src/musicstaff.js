@@ -1,5 +1,5 @@
-/* Javascript for MirskytechXBlock. */
-function MirskytechXBlock(runtime, element, init_args) {
+/* Javascript for MusicStaffXBlock. */
+function MusicStaffXBlock(runtime, element, init_args) {
     
     
     var uid = element.dataset.usage.replace(/\./g,"-");

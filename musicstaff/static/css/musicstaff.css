@@ -1,0 +1,9 @@
+/* CSS for MusicStaffXBlock */
+
+.musicstaff_block a.tutorial {
+    font-weight: bold;
+}
+
+.musicstaff_block a.question {
+    font-style:italic;
+}
