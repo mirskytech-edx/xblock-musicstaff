@@ -21,7 +21,7 @@ class MusicStaffXBlock(XBlock):
     
     
     question = String(
-        default="",
+        default=None,
         scope=Scope.content,
         help="The question to ask the user to complete."
     )   
@@ -36,12 +36,12 @@ K:C
     
     
     tune = String(
-        default=default_tune_scale, scope=Scope.user_state,
+        default=None, scope=Scope.user_state,
         help="The answer for the user.",    
     )
     
-    start=String(
-        default="", scope=Scope.content,
+    start_tune=String(
+        default=None, scope=Scope.content,
         help="A starting point for the user"
     )
 
@@ -58,10 +58,10 @@ K:C
         """
         
         if not self.uid:
-            self.uid = self.scope_ids.usage_id.replace(".","-");
+            self.uid = self.scope_ids.usage_id.html_id()
             
-        if self.start and self.tune == self.default_tune_scale:
-            self.tune = self.start.replace("\\n","\n")
+        #if self.start and self.default_tune_scale and self.tune == self.default_tune_scale:
+        #    self.tune = self.start.replace("\\n","\n")
         
         
         # base template
