@@ -57,8 +57,8 @@ K:C
         the student to create a musical composition as an answer.
         """
         
-        if not self.uid:
-            self.uid = self.scope_ids.usage_id.html_id()
+        #if not self.uid:
+            #self.uid = self.scope_ids.usage_id.html_id()
             
         #if self.start and self.default_tune_scale and self.tune == self.default_tune_scale:
         #    self.tune = self.start.replace("\\n","\n")
@@ -74,7 +74,8 @@ K:C
         frag.add_css(self.resource_string("static/css/musicstaff.css"))
         
         # library dependencies
-        frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_2.3-min.js"))
+        frag.add_javascript(self.resource_string("static/js/libs/raphael-min.js"))        
+        frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_9.1.js"))
         frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
         
         # javascript & initialization

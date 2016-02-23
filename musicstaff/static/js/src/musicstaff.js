@@ -1,10 +1,11 @@
 /* Javascript for MusicStaffXBlock. */
 function MusicStaffXBlock(runtime, element, init_args) {
     
+    var melement = element;
     
-    var uid = element.dataset.usage.replace(/\./g,"-");
-    var editor_id = "abc-editor-" + uid;
-    var status_id = "status-" + uid;
+    //var uid = element.dataset.usage.replace(/\./g,"-");
+    //var editor_id = "abc-editor-" + uid;
+    //var status_id = "status-" + uid;
     
     
     function tuneUpdated(result) {
@@ -16,18 +17,18 @@ function MusicStaffXBlock(runtime, element, init_args) {
     $(function ($) {
     
         var opts = {
-            paper_id:"paper-"+uid,
-            midi_id:"midi-"+uid,
-            warnings_id:"warnings-"+uid,
+            canvas_el:$(melement).find('#abc-paper').get(0),
             renderParams: {},
             midiParams:{}
         };
     
-        var abc_editor = new ABCJS.Editor(editor_id, opts);
-        
-        $('#'+editor_id).on('change keyup paste', function(e){ });
+        var textarea = $(melement).find('#abc-editor');
     
-        $('#'+editor_id).typing({
+        var abc_editor = new ABCJS.Editor(textarea.get(0), opts);
+        
+        $(textarea).on('change keyup paste', function(e){ });
+    
+        $(textarea).typing({
             start: function(event, $elem) {
                 //$('#'+status_id).html('typing');
             },
