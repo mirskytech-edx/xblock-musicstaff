@@ -24,7 +24,8 @@ function MusicStaffXBlock(runtime, element, init_args) {
     
         var textarea = $(melement).find('#abc-editor');
     
-        var abc_editor = new ABCJS.Editor(textarea.get(0), opts);
+        var editor = new window.ABCJS.edit.EditArea(textarea.get(0));
+        var abc_editor = new ABCJS.Editor(editor, opts);
         
         $(textarea).on('change keyup paste', function(e){ });
     
