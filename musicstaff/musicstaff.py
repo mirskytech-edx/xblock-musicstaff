@@ -75,7 +75,7 @@ K:C
         
         # library dependencies
         frag.add_javascript(self.resource_string("static/js/libs/raphael-min.js"))        
-        frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_9.1.js"))
+        frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_9.9.js"))
         frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
         
         # javascript & initialization
