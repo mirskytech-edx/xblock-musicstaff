@@ -7,17 +7,22 @@ from xblock.core import XBlock
 from xblock.fields import Scope, String
 from xblock.fragment import Fragment
 
+from django.utils.translation import ugettext as _
+
 
 class MusicStaffXBlock(XBlock):
     """
     An XBlock that allows you to compose a song using the ABC music notation.
     
-    
+    for reference: http://abcnotation.com/
     """
-
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.    
-    uid = None
+    
+    display_name = String(
+        display_name='Music Staff',
+        default='Music Staff Question',
+        scope=Scope.settings,
+        help="Music staff display setting"
+    )
     
     
     question = String(

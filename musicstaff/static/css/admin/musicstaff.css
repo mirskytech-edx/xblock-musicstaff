@@ -1,3 +1,7 @@
+.musicstaff_studio input {
+    width:50%;
+}
+
 .musicstaff_studio textarea {
     width:50%;
     height:200px;
