@@ -60,6 +60,7 @@ K:C
         """
         
         self.display_tune = self.tune if self.tune else self.start_tune
+        self.display_question = self.question if self.question else "<span class='error'>no question specified</span>"
         
         # base template
         html = self.resource_string("static/html/musicstaff.html")

@@ -5,13 +5,15 @@
             <input type="text"
                     name="musicstaff_question"
                     id="musicstaff_question"
-                    placeholder="what do 4 bars of a jazz riff look like?"/>
+                    placeholder="what do 4 bars of a jazz riff look like?"
+                    value="{self.question}"                    
+                    />
         </div>
         <div class="pure-u-1-1">
             <h4>Optionally, you can provide a starting point for the student</h4>
             <textarea type="text"            
-                name="musicstaff_startingtune"
-                id="musicstaff_startingtune"                
+                name="musicstaff_starttune"
+                id="musicstaff_starttune"                
                 >
                 {self.display_tune}
             </textarea>

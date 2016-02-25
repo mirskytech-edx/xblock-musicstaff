@@ -4,6 +4,14 @@
     font-weight: bold;
 }
 
-.musicstaff_block a.question {
+.musicstaff_block .question {
     font-style:italic;
+}
+
+.musicstaff_block .error {
+    color:red;
+}
+
+.musicstaff_block textarea {
+    min-height:200px;
 }
