@@ -21,29 +21,32 @@ class MusicStaffXBlock(XBlock):
     
     
     question = String(
-        default=None,
+        default="",
         scope=Scope.content,
         help="The question to ask the user to complete."
     )   
     
     
-    default_tune_scale = """X:1
+    default_tune_scale = \
+"""X:1
 T:Simple Scale
 M:C
 L:1/4
 K:C
-|]"""
+|]abd2e/2"""
     
     
     tune = String(
-        default=None, scope=Scope.user_state,
+        default="", scope=Scope.user_state,
         help="The answer for the user.",    
     )
     
     start_tune=String(
-        default=None, scope=Scope.content,
+        default=default_tune_scale, scope=Scope.content,
         help="A starting point for the user"
     )
+    
+    display_tune = "abcdef"
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -56,6 +59,7 @@ K:C
         the student to create a musical composition as an answer.
         """
         
+        self.display_tune = self.tune if self.tune else self.start_tune
         
         # base template
         html = self.resource_string("static/html/musicstaff.html")
@@ -82,8 +86,17 @@ K:C
         This renders the view for the XBlock. It poses a question and asks
         the author to configure the music-related topic.
         """    
-        html = self.resource_string("static/html/admin/musicstaff.html")
+        
+        self.display_tune = self.tune if self.tune else self.start_tune
+                
+        html = self.resource_string("static/html/admin/musicstaff.html")        
         frag = Fragment(html.format(self=self))
+                
+        frag.add_css(self.resource_string("static/css/admin/musicstaff.css"))        
+        frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/admin/musicstaff.js"))
+        
+        frag.initialize_js('MusicStaffStudio')
         
         return frag
     
@@ -97,6 +110,13 @@ K:C
         """
         self.tune = data['tune']
         return {"tune": self.tune}
+    
+    @XBlock.json_handler    
+    def studio_edit(self, data, suffix=''):
+        print "data %s" % data
+        self.question = data.get('question',"")
+        self.start_tune = data.get('starttune',"")
+        return {'status':"ok"}
 
 
     @staticmethod
