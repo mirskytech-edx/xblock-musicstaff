@@ -22,7 +22,7 @@ def package_data(pkg, roots):
 
 setup(
     name='musicstaff-xblock',
-    version='0.1',
+    version='0.2',
     description='xblock which allows users to compose music',
     packages=[
         'musicstaff',
