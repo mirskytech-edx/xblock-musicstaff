@@ -15,3 +15,27 @@
 .musicstaff_block textarea {
     min-height:200px;
 }
+
+.musicstaff_block .status {
+    font-size:12px;
+    font-style:italic;
+    color:lightgray;
+}
+
+.musicstaff_block .tutorial h4 {
+    margin-top:0;
+    margin-bottom:4px;
+    color:slategray;
+}
+
+.musicstaff_block .tutorial ul {
+    padding-left:0;
+    font-size:12px;
+    font-style:italic;
+    color:gray;
+}
+
+.musicstaff_block .tutorial li {
+    margin-bottom:6px;
+}
+

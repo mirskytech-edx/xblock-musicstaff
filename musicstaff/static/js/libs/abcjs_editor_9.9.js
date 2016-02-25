@@ -11806,10 +11806,17 @@ window.ABCJS.Editor = function(editarea, params) {
     }
   }
   
-  if (params.generate_warnings || params.warnings_id) {
-    if (params.warnings_id) {
-      this.warningsdiv = document.getElementById(params.warnings_id);
-    } else {
+  if (params.generate_warnings || params.warnings_id || params.warnings) {
+  
+	var warnings = params.warnings || params.warnings_id;
+  
+  
+    if (typeof warnings === "string") {
+      this.warningsdiv = document.getElementById(warnings);
+    } else if(warnings) {
+	  this.warningsdiv = warnings;
+	}	
+	else {
       this.warningsdiv = this.div;
     }
   }

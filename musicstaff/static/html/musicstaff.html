@@ -11,9 +11,28 @@
     <div class="pure-g">
         <div class="pure-u-1-2">
             <textarea name="abc-editor" id="abc-editor" cols="80" rows="15">{self.display_tune}</textarea>
-            <p id="status"></p>
+            <p id="abc-status" class="status"></p>
         </div>
-        <div class="pure-u-1-2"></div>
+        <div class="pure-u-1-2 tutorial">
+            <h4>Quick start</h4>
+            <ul>
+                <li>"K:" followed by a upper or lower case letter specifies the key.</li>
+                <li> "M:" specifies the meter in fraction notation. eg "M:6/8"</li>
+                <li>"L:" specifies the default length of a note. eg "L:1/4" has each note being a quarter-note</li>
+                <li>Each note is written as a letter, separated by a space; upper case to denote the bottom octave and lower case letters for the top octave.</li>
+                <li>To go down an octave, just put a comma after the letter and to go up an octave use an apostrophe.</li>
+                <li>If a letter is followed by a number, it is used to multiply its length eg. A2 is a half-note if the default is L:1/4</li>
+                <li>If a letter is followed by a slash and a number, it is used to divide its length eg. A/2 is an eitghth-note if the default is L:1/4</li>
+                <li>Example:
+<pre>M:C
+L:1/4
+K:C
+|]A2 B C'/2D'/2|e/4f/4g/4a/4|]
+</pre>
+</li>
+                <li>For beams, tuplets, ties, guitar chords and lyrics, check out <a href="http://abcnotation.com/examples" target="_blank">abc notation</a>.</li>
+            </ul>
+        </div>
     </div>
     <div class="pure-g">
         <div class="pure-u-1-2">            
@@ -21,7 +40,7 @@
         </div>
         <div class="pure-u-1-12">&nbsp;</div>
         <div class="pure-u-5-12">
-            <div id="warnings"></div>
+            <div id="abc-warnings"></div>
         </div>
     </div>
 </div>

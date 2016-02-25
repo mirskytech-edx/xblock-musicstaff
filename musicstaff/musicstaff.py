@@ -33,12 +33,11 @@ class MusicStaffXBlock(XBlock):
     
     
     default_tune_scale = \
-"""X:1
-T:Simple Scale
+"""
 M:C
 L:1/4
 K:C
-|]abd2e/2"""
+|]A2 B C'/2D'/2|e/4f/4g/4a/4|]"""
     
     
     tune = String(
