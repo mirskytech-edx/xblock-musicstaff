@@ -50,18 +50,11 @@ K:C
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
         This renders the view for the XBlock. It poses a question and asks
         the student to create a musical composition as an answer.
         """
-        
-        #if not self.uid:
-            #self.uid = self.scope_ids.usage_id.html_id()
-            
-        #if self.start and self.default_tune_scale and self.tune == self.default_tune_scale:
-        #    self.tune = self.start.replace("\\n","\n")
         
         
         # base template
@@ -74,7 +67,7 @@ K:C
         frag.add_css(self.resource_string("static/css/musicstaff.css"))
         
         # library dependencies
-        frag.add_javascript(self.resource_string("static/js/libs/raphael-min.js"))        
+        frag.add_javascript(self.resource_string("static/js/libs/raphael.js"))        
         frag.add_javascript(self.resource_string("static/js/libs/abcjs_editor_9.9.js"))
         frag.add_javascript(self.resource_string("static/js/libs/jquery.typing-0.2.0.min.js"))
         
@@ -83,6 +76,19 @@ K:C
         frag.initialize_js('MusicStaffXBlock')
         
         return frag
+    
+    def studio_view(self, context=None):
+        """
+        This renders the view for the XBlock. It poses a question and asks
+        the author to configure the music-related topic.
+        """    
+        html = self.resource_string("static/html/admin/musicstaff.html")
+        frag = Fragment(html.format(self=self))
+        
+        return frag
+    
+    
+    
 
     @XBlock.json_handler
     def store_tune(self, data, suffix=''):
